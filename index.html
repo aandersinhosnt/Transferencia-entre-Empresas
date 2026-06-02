@@ -24,16 +24,16 @@
   input:focus { outline: none; border-color: #1a56a0; }
   .tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .tipo-btn {
-    padding: 12px 8px; border: 1.5px solid #ddd; border-radius: 10px;
-    background: white; font-size: 12px; cursor: pointer;
-    text-align: center; line-height: 1.5; color: #1a1a1a;
+    padding: 14px 8px; border: 1.5px solid #ddd; border-radius: 10px;
+    background: white; cursor: pointer; text-align: center;
+    line-height: 1.5; color: #1a1a1a;
     -webkit-tap-highlight-color: transparent;
   }
-  .tipo-btn.active-buy { background: #cfe2ff; border-color: #1a56a0; color: #0a2e6e; font-weight: 600; }
-  .tipo-btn.active-loan { background: #fff3cd; border-color: #d4a000; color: #6b4400; font-weight: 600; }
-  .tipo-btn .empresa { font-size: 13px; font-weight: 700; display: block; margin-bottom: 2px; }
-  .tipo-btn .acao { font-size: 11px; display: block; }
-  .badge { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 20px; margin-top: 3px; }
+  .tipo-btn.active-buy { background: #cfe2ff; border-color: #1a56a0; color: #0a2e6e; }
+  .tipo-btn.active-loan { background: #fff3cd; border-color: #d4a000; color: #6b4400; }
+  .tipo-btn .empresa { font-size: 16px; font-weight: 800; display: block; margin-bottom: 3px; letter-spacing: 0.5px; }
+  .tipo-btn .acao { font-size: 11px; font-weight: 500; display: block; text-transform: uppercase; letter-spacing: 0.3px; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
   .badge-buy { background: #cfe2ff; color: #0a2e6e; }
   .badge-loan { background: #fff3cd; color: #6b4400; }
   .sku-wrap { position: relative; }
@@ -50,33 +50,33 @@
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .btn-submit {
     width: 100%; height: 52px; background: #1a56a0; color: white;
-    border: none; border-radius: 10px; font-size: 16px; font-weight: 600;
-    cursor: pointer; margin-top: 4px;
+    border: none; border-radius: 10px; font-size: 15px; font-weight: 700;
+    cursor: pointer; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-submit:active { background: #0e3a73; }
   .btn-submit:disabled { background: #aaa; }
   .success-box { display: none; border-radius: 10px; padding: 14px; text-align: center; margin-top: 12px; }
   .success-buy { background: #cfe2ff; border: 1.5px solid #1a56a0; }
-  .success-buy p { color: #0a2e6e; font-size: 15px; font-weight: 600; }
+  .success-buy p { color: #0a2e6e; font-size: 15px; font-weight: 700; text-transform: uppercase; }
   .success-buy span { color: #1a56a0; font-size: 12px; display: block; margin-top: 4px; }
   .success-loan { background: #fff3cd; border: 1.5px solid #d4a000; }
-  .success-loan p { color: #6b4400; font-size: 15px; font-weight: 600; }
+  .success-loan p { color: #6b4400; font-size: 15px; font-weight: 700; text-transform: uppercase; }
   .success-loan span { color: #a06000; font-size: 12px; display: block; margin-top: 4px; }
   .error-box { display: none; background: #fdecea; border: 1.5px solid #c62828; border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 13px; color: #b71c1c; }
   .hist-card { display: none; }
-  .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 10px; border-radius: 8px; margin-bottom: 6px; font-size: 12px; }
+  .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 10px; border-radius: 8px; margin-bottom: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
   .hist-item.tipo-compra { background: #cfe2ff; color: #0a2e6e; }
   .hist-item.tipo-emprestimo { background: #fff3cd; color: #6b4400; }
-  .legenda { display: flex; gap: 12px; margin-bottom: 14px; font-size: 12px; color: #555; align-items: center; }
+  .legenda { display: flex; gap: 12px; margin-bottom: 14px; font-size: 12px; font-weight: 600; color: #555; align-items: center; text-transform: uppercase; }
   .legenda-cor { width: 14px; height: 14px; border-radius: 3px; display: inline-block; margin-right: 4px; vertical-align: middle; }
-  .footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px 0 30px; }
+  .footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px 0 30px; text-transform: uppercase; letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
 <div class="header">
-  <h1>📦 Transferência de Estoque</h1>
-  <p>MD2 ↔ ZENX — Compras e Empréstimos</p>
+  <h1>📦 TRANSFERÊNCIA DE ESTOQUE</h1>
+  <p>MD2 ↔ ZENX — COMPRAS E EMPRÉSTIMOS</p>
 </div>
 <div class="container">
 
@@ -87,57 +87,58 @@
 
   <div class="card">
     <div class="card-title">Funcionário</div>
-    <label>Nome de quem está fazendo o registro</label>
-    <input type="text" id="funcionario" placeholder="Seu nome" />
-    <label>Nome de quem autorizou</label>
-    <input type="text" id="autorizado" placeholder="Nome do autorizador" />
+    <label>NOME DE QUEM ESTÁ REGISTRANDO</label>
+    <input type="text" id="funcionario" placeholder="SEU NOME" style="text-transform:uppercase" />
+    <label>NOME DE QUEM AUTORIZOU</label>
+    <input type="text" id="autorizado" placeholder="NOME DO AUTORIZADOR" style="text-transform:uppercase" />
   </div>
 
   <div class="card">
-    <div class="card-title">Tipo de movimentação</div>
+    <div class="card-title">Tipo de Movimentação</div>
     <div class="tipo-grid">
       <button class="tipo-btn" id="btn1" onclick="setTipo('MD2','ZENX','compra')">
         <span class="empresa">MD2</span>
-        <span class="acao">comprou da ZENX</span>
-        <span class="badge badge-buy">Compra</span>
+        <span class="acao">COMPROU DA ZENX</span>
+        <span class="badge badge-buy">COMPRA</span>
       </button>
       <button class="tipo-btn" id="btn2" onclick="setTipo('MD2','ZENX','emprestimo')">
         <span class="empresa">MD2</span>
-        <span class="acao">pegou emprestado da ZENX</span>
-        <span class="badge badge-loan">Empréstimo</span>
+        <span class="acao">PEGOU EMPRESTADO DA ZENX</span>
+        <span class="badge badge-loan">EMPRÉSTIMO</span>
       </button>
       <button class="tipo-btn" id="btn3" onclick="setTipo('ZENX','MD2','compra')">
         <span class="empresa">ZENX</span>
-        <span class="acao">comprou da MD2</span>
-        <span class="badge badge-buy">Compra</span>
+        <span class="acao">COMPROU DA MD2</span>
+        <span class="badge badge-buy">COMPRA</span>
       </button>
       <button class="tipo-btn" id="btn4" onclick="setTipo('ZENX','MD2','emprestimo')">
         <span class="empresa">ZENX</span>
-        <span class="acao">pegou emprestado da MD2</span>
-        <span class="badge badge-loan">Empréstimo</span>
+        <span class="acao">PEGOU EMPRESTADO DA MD2</span>
+        <span class="badge badge-loan">EMPRÉSTIMO</span>
       </button>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Produto e Quantidade</div>
-    <label>SKU do produto</label>
+    <label>SKU DO PRODUTO</label>
     <div class="sku-wrap">
-      <input type="text" id="skuInput" placeholder="Digite o SKU ou parte do nome..."
-        autocomplete="off" oninput="filterSku()" onfocus="filterSku()" onblur="setTimeout(hideDrop,250)" />
+      <input type="text" id="skuInput" placeholder="DIGITE O SKU OU PARTE DO NOME..."
+        autocomplete="off" oninput="filterSku()" onfocus="filterSku()" onblur="setTimeout(hideDrop,250)"
+        style="text-transform:uppercase" />
       <div class="sku-dropdown" id="skuDrop"></div>
     </div>
     <div class="row2" style="margin-top:12px">
       <div>
-        <label>Quantidade</label>
+        <label>QUANTIDADE</label>
         <input type="number" id="qtd" min="1" value="1" inputmode="numeric" />
       </div>
       <div>
-        <label>Observação</label>
-        <input type="text" id="obs" placeholder="Opcional" />
+        <label>OBSERVAÇÃO</label>
+        <input type="text" id="obs" placeholder="OPCIONAL" style="text-transform:uppercase" />
       </div>
     </div>
-    <button class="btn-submit" id="btnEnviar" onclick="enviar()">✓ Registrar movimentação</button>
+    <button class="btn-submit" id="btnEnviar" onclick="enviar()">✓ REGISTRAR MOVIMENTAÇÃO</button>
   </div>
 
   <div class="success-box" id="successBox">
@@ -147,11 +148,11 @@
   <div class="error-box" id="errorBox"></div>
 
   <div class="card hist-card" id="histCard">
-    <div class="card-title">Últimos registros desta sessão</div>
+    <div class="card-title">Últimos Registros desta Sessão</div>
     <div id="histList"></div>
   </div>
 
-  <div class="footer">MD2 ↔ ZENX · Sistema de Estoque</div>
+  <div class="footer">MD2 ↔ ZENX · SISTEMA DE ESTOQUE</div>
 </div>
 
 <script>
@@ -1668,7 +1669,7 @@ function filterSku(){
   let html = matches.map(s => '<div class="sku-item" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+s.replace(/"/g,"&quot;")+'">'+s+'</div>').join('');
   if(!exact && q.length>1){
     const raw = document.getElementById('skuInput').value.trim();
-    html += '<div class="sku-item new-sku" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+raw.replace(/"/g,"&quot;")+'">+ Adicionar novo: "'+raw+'"</div>';
+    html += '<div class="sku-item new-sku" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+raw.replace(/"/g,"&quot;")+'">+ ADICIONAR NOVO: "'+raw.toUpperCase()+'"</div>';
   }
   drop.innerHTML = html;
   drop.style.display = (matches.length || (!exact && q.length>1)) ? 'block' : 'none';
@@ -1678,23 +1679,23 @@ function selectSku(s){ document.getElementById('skuInput').value = s; document.g
 function hideDrop(){ document.getElementById('skuDrop').style.display = 'none'; }
 
 function enviar(){
-  const func = document.getElementById('funcionario').value.trim();
-  const autor = document.getElementById('autorizado').value.trim();
-  const sku  = document.getElementById('skuInput').value.trim();
+  const func = document.getElementById('funcionario').value.trim().toUpperCase();
+  const autor = document.getElementById('autorizado').value.trim().toUpperCase();
+  const sku  = document.getElementById('skuInput').value.trim().toUpperCase();
   const qtd  = parseInt(document.getElementById('qtd').value)||0;
-  const obs  = document.getElementById('obs').value.trim();
+  const obs  = document.getElementById('obs').value.trim().toUpperCase();
   const err  = document.getElementById('errorBox');
   err.style.display = 'none';
 
-  if(!func){ err.textContent='⚠ Informe o nome do funcionário.'; err.style.display='block'; return; }
-  if(!autor){ err.textContent='⚠ Informe o nome de quem autorizou.'; err.style.display='block'; return; }
-  if(!tipoSelecionado){ err.textContent='⚠ Selecione o tipo de movimentação.'; err.style.display='block'; return; }
-  if(!sku){ err.textContent='⚠ Informe o SKU do produto.'; err.style.display='block'; return; }
-  if(qtd<1){ err.textContent='⚠ Quantidade deve ser pelo menos 1.'; err.style.display='block'; return; }
+  if(!func){ err.textContent='⚠ INFORME O NOME DO FUNCIONÁRIO.'; err.style.display='block'; return; }
+  if(!autor){ err.textContent='⚠ INFORME O NOME DE QUEM AUTORIZOU.'; err.style.display='block'; return; }
+  if(!tipoSelecionado){ err.textContent='⚠ SELECIONE O TIPO DE MOVIMENTAÇÃO.'; err.style.display='block'; return; }
+  if(!sku){ err.textContent='⚠ INFORME O SKU DO PRODUTO.'; err.style.display='block'; return; }
+  if(qtd<1){ err.textContent='⚠ QUANTIDADE DEVE SER PELO MENOS 1.'; err.style.display='block'; return; }
 
   const btn = document.getElementById('btnEnviar');
   btn.disabled = true;
-  btn.textContent = '⏳ Enviando...';
+  btn.textContent = '⏳ ENVIANDO...';
 
   const now = new Date();
   const d = now.toLocaleDateString('pt-BR');
@@ -1721,16 +1722,16 @@ function enviar(){
     sBox.className = 'success-box ' + (isCompra ? 'success-buy' : 'success-loan');
     sBox.style.display = 'block';
     const textoAcao = isCompra
-      ? tipoSelecionado.de + ' comprou da ' + tipoSelecionado.para
-      : tipoSelecionado.de + ' pegou emprestado da ' + tipoSelecionado.para;
+      ? tipoSelecionado.de + ' COMPROU DA ' + tipoSelecionado.para
+      : tipoSelecionado.de + ' PEGOU EMPRESTADO DA ' + tipoSelecionado.para;
     document.getElementById('successTitle').textContent = (isCompra ? '🔵 ' : '🟡 ') + textoAcao;
-    document.getElementById('successDetail').textContent = sku + ' | ' + qtd + 'x | Autorizado por: ' + autor + ' | ' + d + ' ' + h;
+    document.getElementById('successDetail').textContent = sku + ' | ' + qtd + 'x | AUTORIZADO POR: ' + autor + ' | ' + d + ' ' + h;
     setTimeout(()=> sBox.style.display='none', 6000);
     document.getElementById('skuInput').value = '';
     document.getElementById('qtd').value = '1';
     document.getElementById('obs').value = '';
     btn.disabled = false;
-    btn.textContent = '✓ Registrar movimentação';
+    btn.textContent = '✓ REGISTRAR MOVIMENTAÇÃO';
     renderHist();
   }, 1500);
 }
@@ -1739,7 +1740,7 @@ function renderHist(){
   if(!hist.length) return;
   document.getElementById('histCard').style.display = 'block';
   document.getElementById('histList').innerHTML = hist.map(h=>{
-    const acao = h.tipo==='compra' ? h.empresa_destino+' comprou da '+h.empresa_origem : h.empresa_destino+' pegou emprestado da '+h.empresa_origem;
+    const acao = h.tipo==='compra' ? h.empresa_destino+' COMPROU DA '+h.empresa_origem : h.empresa_destino+' PEGOU EMPRESTADO DA '+h.empresa_origem;
     return '<div class="hist-item tipo-'+h.tipo+'"><span>'+acao+' · '+h.sku+'</span><span>'+h.quantidade+'x · '+(h.tipo==='compra'?'🔵':'🟡')+'</span></div>';
   }).join('');
 }
