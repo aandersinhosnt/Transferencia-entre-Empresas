@@ -23,84 +23,66 @@
   }
   input:focus { outline: none; border-color: #1a56a0; background: #fff; }
   input::placeholder { font-weight: 400; color: #bbb; }
-
   .tabs { display: flex; background: #f0f2f5; border-radius: 10px; padding: 4px; margin-bottom: 14px; gap: 4px; }
-  .tab-btn {
-    flex: 1; padding: 10px 4px; border: none; border-radius: 8px; background: transparent;
-    font-size: 11px; font-weight: 700; color: #888; cursor: pointer; text-transform: uppercase;
-    letter-spacing: 0.3px; -webkit-tap-highlight-color: transparent;
-  }
+  .tab-btn { flex: 1; padding: 10px 4px; border: none; border-radius: 8px; background: transparent; font-size: 11px; font-weight: 700; color: #888; cursor: pointer; text-transform: uppercase; letter-spacing: 0.3px; -webkit-tap-highlight-color: transparent; }
   .tab-ativo-compra     { background: #cfe2ff; color: #0a2e6e; }
   .tab-ativo-emprestimo { background: #fff3cd; color: #6b4400; }
   .tab-ativo-devolucao  { background: #d4edda; color: #155724; }
-
   .op-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .op-btn {
-    padding: 14px 8px; border: 2px solid #e0e0e0; border-radius: 10px;
-    background: white; cursor: pointer; text-align: center;
-    -webkit-tap-highlight-color: transparent;
-  }
+  .op-btn { padding: 14px 8px; border: 2px solid #e0e0e0; border-radius: 10px; background: white; cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
   .op-btn .quem { font-size: 17px; font-weight: 800; display: block; }
   .op-btn .acao { font-size: 10px; font-weight: 600; text-transform: uppercase; display: block; margin: 4px 0; color: #888; }
   .op-btn .para { font-size: 14px; font-weight: 700; display: block; }
-
   .op-ativo-compra     { background: #cfe2ff; border-color: #1a56a0; }
-  .op-ativo-compra .quem { color: #0a2e6e; }
-  .op-ativo-compra .acao { color: #1a56a0; }
-  .op-ativo-compra .para { color: #1a56a0; }
-
-  .op-ativo-emprestimo     { background: #fff3cd; border-color: #d4a000; }
-  .op-ativo-emprestimo .quem { color: #6b4400; }
-  .op-ativo-emprestimo .acao { color: #d4a000; }
-  .op-ativo-emprestimo .para { color: #a06000; }
-
-  .op-ativo-devolucao     { background: #d4edda; border-color: #28a745; }
-  .op-ativo-devolucao .quem { color: #155724; }
-  .op-ativo-devolucao .acao { color: #28a745; }
-  .op-ativo-devolucao .para { color: #1e7e34; }
-
+  .op-ativo-compra .quem { color: #0a2e6e; } .op-ativo-compra .acao { color: #1a56a0; } .op-ativo-compra .para { color: #1a56a0; }
+  .op-ativo-emprestimo { background: #fff3cd; border-color: #d4a000; }
+  .op-ativo-emprestimo .quem { color: #6b4400; } .op-ativo-emprestimo .acao { color: #d4a000; } .op-ativo-emprestimo .para { color: #a06000; }
+  .op-ativo-devolucao  { background: #d4edda; border-color: #28a745; }
+  .op-ativo-devolucao .quem { color: #155724; } .op-ativo-devolucao .acao { color: #28a745; } .op-ativo-devolucao .para { color: #1e7e34; }
   .sku-wrap { position: relative; }
-  .sku-dropdown {
-    display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 50;
-    background: white; border: 1.5px solid #ddd; border-radius: 8px;
-    max-height: 220px; overflow-y: auto;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin-top: 2px;
-  }
+  .sku-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 50; background: white; border: 1.5px solid #ddd; border-radius: 8px; max-height: 220px; overflow-y: auto; box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin-top: 2px; }
   .sku-item { padding: 12px 14px; font-size: 13px; font-weight: 600; cursor: pointer; border-bottom: 1px solid #f0f0f0; text-transform: uppercase; }
   .sku-item:last-child { border: none; }
   .sku-item:active { background: #f0f4ff; }
   .sku-item.new-sku { color: #1a56a0; }
-
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .btn-submit {
-    width: 100%; height: 52px; color: white; border: none; border-radius: 10px;
-    font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 14px;
-    text-transform: uppercase; letter-spacing: 1px; -webkit-tap-highlight-color: transparent;
-  }
-  .btn-compra     { background: #1a56a0; } .btn-compra:active { background: #0e3a73; }
+  .btn-submit { width: 100%; height: 52px; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; margin-top: 14px; text-transform: uppercase; letter-spacing: 1px; -webkit-tap-highlight-color: transparent; }
+  .btn-compra     { background: #1a56a0; } .btn-compra:active     { background: #0e3a73; }
   .btn-emprestimo { background: #d4a000; } .btn-emprestimo:active { background: #a07800; }
-  .btn-devolucao  { background: #28a745; } .btn-devolucao:active { background: #1e7e34; }
+  .btn-devolucao  { background: #28a745; } .btn-devolucao:active  { background: #1e7e34; }
   .btn-submit:disabled { background: #bbb !important; }
-
   .success-box { display: none; border-radius: 10px; padding: 16px; text-align: center; margin-top: 12px; }
-  .suc-compra { background: #cfe2ff; border: 2px solid #1a56a0; }
-  .suc-compra p { color: #0a2e6e; font-size: 14px; font-weight: 800; text-transform: uppercase; }
+  .suc-compra     { background: #cfe2ff; border: 2px solid #1a56a0; }
+  .suc-compra p   { color: #0a2e6e; font-size: 14px; font-weight: 800; text-transform: uppercase; }
   .suc-compra span { color: #1a56a0; font-size: 12px; display: block; margin-top: 4px; font-weight: 600; }
   .suc-emprestimo { background: #fff3cd; border: 2px solid #d4a000; }
   .suc-emprestimo p { color: #6b4400; font-size: 14px; font-weight: 800; text-transform: uppercase; }
   .suc-emprestimo span { color: #a06000; font-size: 12px; display: block; margin-top: 4px; font-weight: 600; }
-  .suc-devolucao { background: #d4edda; border: 2px solid #28a745; }
+  .suc-devolucao  { background: #d4edda; border: 2px solid #28a745; }
   .suc-devolucao p { color: #155724; font-size: 14px; font-weight: 800; text-transform: uppercase; }
   .suc-devolucao span { color: #1e7e34; font-size: 12px; display: block; margin-top: 4px; font-weight: 600; }
-
   .error-box { display: none; background: #fdecea; border: 2px solid #c62828; border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 13px; font-weight: 700; color: #b71c1c; text-transform: uppercase; }
+
+  /* MODAL DE AVISO */
+  .overlay { display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.55); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+  .overlay.show { display: flex; }
+  .modal { background: white; border-radius: 16px; padding: 24px; max-width: 380px; width: 100%; text-align: center; }
+  .modal-icon { font-size: 40px; margin-bottom: 12px; }
+  .modal-title { font-size: 16px; font-weight: 800; color: #b71c1c; text-transform: uppercase; margin-bottom: 8px; }
+  .modal-msg { font-size: 13px; color: #555; font-weight: 600; line-height: 1.6; margin-bottom: 20px; }
+  .modal-msg strong { color: #1a1a1a; }
+  .modal-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .modal-btn { height: 46px; border: none; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; text-transform: uppercase; -webkit-tap-highlight-color: transparent; }
+  .modal-cancelar { background: #f0f0f0; color: #555; }
+  .modal-cancelar:active { background: #ddd; }
+  .modal-continuar { background: #c62828; color: white; }
+  .modal-continuar:active { background: #8b0000; }
 
   .hist-card { display: none; }
   .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
   .hist-compra     { background: #cfe2ff; color: #0a2e6e; }
   .hist-emprestimo { background: #fff3cd; color: #6b4400; }
   .hist-devolucao  { background: #d4edda; color: #155724; }
-
   .legenda { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
   .leg { font-size: 11px; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
   .leg-cor { width: 12px; height: 12px; border-radius: 3px; }
@@ -109,6 +91,20 @@
 </style>
 </head>
 <body>
+
+<!-- MODAL DE AVISO DEVOLUÇÃO INDEVIDA -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-icon">⚠️</div>
+    <div class="modal-title">ATENÇÃO!</div>
+    <div class="modal-msg" id="modalMsg"></div>
+    <div class="modal-btns">
+      <button class="modal-btn modal-cancelar" onclick="fecharModal()">✕ CANCELAR</button>
+      <button class="modal-btn modal-continuar" onclick="confirmarEnvio()">CONTINUAR MESMO ASSIM</button>
+    </div>
+  </div>
+</div>
+
 <div class="header">
   <h1>📦 TRANSFERÊNCIA DE ESTOQUE</h1>
   <p>MD2 ↔ ZENX — COMPRAS, EMPRÉSTIMOS E DEVOLUÇÕES</p>
@@ -1669,44 +1665,34 @@ const SKUS = [
   "QUATAR2022-75FIGU"
 ];
 
-/*
-  REGRA DE OURO — origem = de onde o produto SAI, destino = para onde VAI:
-  COMPRA:     MD2 comprou da ZENX  → origem=ZENX, destino=MD2
-  EMPRESTIMO: MD2 pegou emp. ZENX  → origem=ZENX, destino=MD2  (MD2 deve devolver para ZENX)
-  DEVOLUCAO:  MD2 devolveu p/ ZENX → origem=MD2,  destino=ZENX (abate dívida MD2→ZENX)
-*/
 const OPCOES = {
   compra: [
-    { quem:"MD2",  acao:"COMPROU DA",      para:"ZENX", origem:"ZENX", destino:"MD2"  },
-    { quem:"ZENX", acao:"COMPROU DA",      para:"MD2",  origem:"MD2",  destino:"ZENX" }
+    { quem:"MD2",  acao:"COMPROU DA",    para:"ZENX", origem:"ZENX", destino:"MD2"  },
+    { quem:"ZENX", acao:"COMPROU DA",    para:"MD2",  origem:"MD2",  destino:"ZENX" }
   ],
   emprestimo: [
-    { quem:"MD2",  acao:"PEGOU EMP. DA",   para:"ZENX", origem:"ZENX", destino:"MD2"  },
-    { quem:"ZENX", acao:"PEGOU EMP. DA",   para:"MD2",  origem:"MD2",  destino:"ZENX" }
+    { quem:"MD2",  acao:"PEGOU EMP. DA", para:"ZENX", origem:"ZENX", destino:"MD2"  },
+    { quem:"ZENX", acao:"PEGOU EMP. DA", para:"MD2",  origem:"MD2",  destino:"ZENX" }
   ],
   devolucao: [
-    { quem:"MD2",  acao:"DEVOLVEU PARA",   para:"ZENX", origem:"MD2",  destino:"ZENX" },
-    { quem:"ZENX", acao:"DEVOLVEU PARA",   para:"MD2",  origem:"ZENX", destino:"MD2"  }
+    { quem:"MD2",  acao:"DEVOLVEU PARA", para:"ZENX", origem:"MD2",  destino:"ZENX" },
+    { quem:"ZENX", acao:"DEVOLVEU PARA", para:"MD2",  origem:"ZENX", destino:"MD2"  }
   ]
 };
-
 const ICONES = { compra:"🔵", emprestimo:"🟡", devolucao:"🟢" };
 const NOMES  = { compra:"COMPRA", emprestimo:"EMPRÉSTIMO", devolucao:"DEVOLUÇÃO" };
 
 let tipoAtual = null;
 let opcaoSel  = null;
 let hist = [];
+let pendingPayload = null; // guarda dados para envio após confirmação no modal
 
 function setTipo(tipo) {
   tipoAtual = tipo;
   opcaoSel  = null;
-
-  // Resetar tabs
   document.getElementById("tabCompra").className     = "tab-btn" + (tipo==="compra"     ? " tab-ativo-compra"     : "");
   document.getElementById("tabEmprestimo").className = "tab-btn" + (tipo==="emprestimo" ? " tab-ativo-emprestimo" : "");
   document.getElementById("tabDevolucao").className  = "tab-btn" + (tipo==="devolucao"  ? " tab-ativo-devolucao"  : "");
-
-  // Renderizar opções
   document.getElementById("opHint").style.display = "none";
   document.getElementById("opGrid").innerHTML = OPCOES[tipo].map((op, i) =>
     `<button class="op-btn" id="opBtn${i}" onclick="setOpcao(${i})">
@@ -1715,8 +1701,6 @@ function setTipo(tipo) {
       <span class="para">${op.para}</span>
     </button>`
   ).join("");
-
-  // Atualizar botão enviar
   document.getElementById("btnEnviar").className = "btn-submit btn-" + tipo;
   document.getElementById("btnEnviar").textContent = "✓ REGISTRAR " + NOMES[tipo];
 }
@@ -1725,7 +1709,6 @@ function setOpcao(i) {
   if(!tipoAtual) return;
   opcaoSel = OPCOES[tipoAtual][i];
   document.getElementById("errorBox").style.display = "none";
-  // Destacar botão selecionado
   [0,1].forEach(j => {
     const btn = document.getElementById("opBtn"+j);
     if(btn) btn.className = "op-btn" + (j===i ? " op-ativo-"+tipoAtual : "");
@@ -1751,7 +1734,7 @@ function filterSku() {
 function selectSku(s){ document.getElementById("skuInput").value=s; document.getElementById("skuDrop").style.display="none"; }
 function hideDrop(){ document.getElementById("skuDrop").style.display="none"; }
 
-function enviar() {
+async function enviar() {
   const func  = document.getElementById("funcionario").value.trim().toUpperCase();
   const autor = document.getElementById("autorizado").value.trim().toUpperCase();
   const sku   = document.getElementById("skuInput").value.trim().toUpperCase();
@@ -1767,43 +1750,95 @@ function enviar() {
   if(!sku)       { err.textContent="⚠ INFORME O SKU DO PRODUTO.";         err.style.display="block"; return; }
   if(qtd<1)      { err.textContent="⚠ QUANTIDADE DEVE SER PELO MENOS 1."; err.style.display="block"; return; }
 
-  const btn = document.getElementById("btnEnviar");
-  btn.disabled = true;
-  btn.textContent = "⏳ ENVIANDO...";
-
   const now = new Date();
   const d = now.toLocaleDateString("pt-BR");
   const h = now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
 
-  const params = new URLSearchParams({
-    data: d, hora: h,
-    funcionario: func,
-    autorizado: autor,
-    estoque_origem:  opcaoSel.origem,
-    estoque_destino: opcaoSel.destino,
-    tipo: tipoAtual,
-    sku: sku,
-    quantidade: qtd,
-    observacao: obs
-  });
+  const payload = { data:d, hora:h, funcionario:func, autorizado:autor,
+    estoque_origem:opcaoSel.origem, estoque_destino:opcaoSel.destino,
+    tipo:tipoAtual, sku, quantidade:qtd, observacao:obs };
 
+  // SE FOR DEVOLUÇÃO: consultar saldo primeiro
+  if(tipoAtual === "devolucao") {
+    const btn = document.getElementById("btnEnviar");
+    btn.disabled = true;
+    btn.textContent = "⏳ VERIFICANDO...";
+    try {
+      const consultaUrl = SHEET_URL + "?acao=consultar&devedor=" + encodeURIComponent(opcaoSel.origem)
+        + "&credor=" + encodeURIComponent(opcaoSel.destino)
+        + "&sku=" + encodeURIComponent(sku);
+      const resp = await fetch(consultaUrl);
+      const json = await resp.json();
+      const saldo = json.saldo || 0;
+      btn.disabled = false;
+      btn.textContent = "✓ REGISTRAR DEVOLUÇÃO";
+
+      if(saldo <= 0) {
+        // Não deve nada — mostrar modal de aviso
+        pendingPayload = payload;
+        document.getElementById("modalMsg").innerHTML =
+          `<strong>${opcaoSel.origem}</strong> NÃO POSSUI EMPRÉSTIMO PENDENTE DE <strong>${opcaoSel.destino}</strong> PARA O SKU:<br><br>` +
+          `<strong style="font-size:15px;color:#1a1a1a">${sku}</strong><br><br>` +
+          `DESEJA REGISTRAR MESMO ASSIM?`;
+        document.getElementById("overlay").classList.add("show");
+        return;
+      } else if(qtd > saldo) {
+        // Está devolvendo mais do que deve — aviso
+        pendingPayload = payload;
+        document.getElementById("modalMsg").innerHTML =
+          `<strong>${opcaoSel.origem}</strong> DEVE <strong>${saldo} UNIDADES</strong> DO SKU:<br><br>` +
+          `<strong style="font-size:15px;color:#1a1a1a">${sku}</strong><br><br>` +
+          `VOCÊ ESTÁ TENTANDO DEVOLVER <strong>${qtd} UNIDADES</strong>, QUE É MAIS DO QUE O SALDO DEVEDOR.<br><br>DESEJA CONTINUAR MESMO ASSIM?`;
+        document.getElementById("overlay").classList.add("show");
+        return;
+      }
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = "✓ REGISTRAR DEVOLUÇÃO";
+      // Se falhar a consulta, permite continuar normalmente
+    }
+  }
+
+  // Envio normal
+  enviarParaPlanilha(payload);
+}
+
+function fecharModal() {
+  document.getElementById("overlay").classList.remove("show");
+  pendingPayload = null;
+}
+
+function confirmarEnvio() {
+  document.getElementById("overlay").classList.remove("show");
+  if(pendingPayload) {
+    enviarParaPlanilha(pendingPayload);
+    pendingPayload = null;
+  }
+}
+
+function enviarParaPlanilha(payload) {
+  const btn = document.getElementById("btnEnviar");
+  btn.disabled = true;
+  btn.textContent = "⏳ ENVIANDO...";
+
+  const params = new URLSearchParams(payload);
   new Image().src = SHEET_URL + "?" + params.toString();
 
-  hist.unshift({tipo:tipoAtual, quem:opcaoSel.quem, acao:opcaoSel.acao, para:opcaoSel.para, sku, qtd});
+  hist.unshift({tipo:payload.tipo, quem:opcaoSel.quem, acao:opcaoSel.acao, para:opcaoSel.para, sku:payload.sku, qtd:payload.quantidade});
   if(hist.length>5) hist.pop();
 
   setTimeout(()=>{
     const sBox = document.getElementById("successBox");
-    sBox.className = "success-box suc-" + tipoAtual;
+    sBox.className = "success-box suc-" + payload.tipo;
     sBox.style.display = "block";
-    document.getElementById("successTitle").textContent = ICONES[tipoAtual] + " " + opcaoSel.quem + " " + opcaoSel.acao + " " + opcaoSel.para;
-    document.getElementById("successDetail").textContent = sku + " | " + qtd + "x | AUTORIZADO: " + autor + " | " + d + " " + h;
+    document.getElementById("successTitle").textContent = ICONES[payload.tipo] + " " + opcaoSel.quem + " " + opcaoSel.acao + " " + opcaoSel.para;
+    document.getElementById("successDetail").textContent = payload.sku + " | " + payload.quantidade + "x | AUTORIZADO: " + payload.autorizado + " | " + payload.data + " " + payload.hora;
     setTimeout(()=> sBox.style.display="none", 6000);
     document.getElementById("skuInput").value = "";
     document.getElementById("qtd").value = "1";
     document.getElementById("obs").value = "";
     btn.disabled = false;
-    btn.textContent = "✓ REGISTRAR " + NOMES[tipoAtual];
+    btn.textContent = "✓ REGISTRAR " + NOMES[payload.tipo];
     renderHist();
   }, 1500);
 }
