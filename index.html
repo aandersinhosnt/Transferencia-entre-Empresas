@@ -20,13 +20,13 @@
   label { display: block; font-size: 13px; color: #555; margin-bottom: 5px; margin-top: 12px; }
   label:first-child { margin-top: 0; }
 
-  input[type=text], input[type=number], select {
+  input[type=text], input[type=number] {
     width: 100%; height: 44px; padding: 0 12px;
     border: 1.5px solid #ddd; border-radius: 8px;
     font-size: 15px; color: #1a1a1a; background: #fff;
     -webkit-appearance: none; appearance: none;
   }
-  input:focus, select:focus { outline: none; border-color: #1a56a0; }
+  input:focus { outline: none; border-color: #1a56a0; }
 
   .tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .tipo-btn {
@@ -36,11 +36,12 @@
     transition: all 0.15s; -webkit-tap-highlight-color: transparent;
   }
   .tipo-btn:active { transform: scale(0.97); }
-  .tipo-btn.active-buy { background: #e8f0fe; border-color: #1a56a0; color: #1a3a6e; font-weight: 600; }
-  .tipo-btn.active-loan { background: #e6f4ea; border-color: #2e7d32; color: #1b5e20; font-weight: 600; }
+  .tipo-btn.active-buy { background: #cfe2ff; border-color: #1a56a0; color: #1a3a6e; font-weight: 600; }
+  .tipo-btn.active-loan { background: #fff3cd; border-color: #e6a817; color: #7d4e00; font-weight: 600; }
+
   .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; margin-top: 3px; }
-  .badge-buy { background: #c2d3fb; color: #1a3a6e; }
-  .badge-loan { background: #b8dfc0; color: #1b5e20; }
+  .badge-buy { background: #cfe2ff; color: #1a3a6e; }
+  .badge-loan { background: #fff3cd; color: #7d4e00; }
 
   .sku-wrap { position: relative; }
   .sku-dropdown {
@@ -66,11 +67,15 @@
   .btn-submit:disabled { background: #aaa; }
 
   .success-box {
-    display: none; background: #e6f4ea; border: 1.5px solid #2e7d32;
-    border-radius: 10px; padding: 14px; text-align: center; margin-top: 12px;
+    display: none; border-radius: 10px; padding: 14px;
+    text-align: center; margin-top: 12px;
   }
-  .success-box p { color: #1b5e20; font-size: 15px; font-weight: 600; }
-  .success-box span { color: #2e7d32; font-size: 12px; display: block; margin-top: 4px; }
+  .success-buy { background: #cfe2ff; border: 1.5px solid #1a56a0; }
+  .success-buy p { color: #1a3a6e; font-size: 15px; font-weight: 600; }
+  .success-buy span { color: #1a56a0; font-size: 12px; display: block; margin-top: 4px; }
+  .success-loan { background: #fff3cd; border: 1.5px solid #e6a817; }
+  .success-loan p { color: #7d4e00; font-size: 15px; font-weight: 600; }
+  .success-loan span { color: #a06000; font-size: 12px; display: block; margin-top: 4px; }
 
   .error-box {
     display: none; background: #fdecea; border: 1.5px solid #c62828;
@@ -81,16 +86,20 @@
   .hist-card { display: none; }
   .hist-item {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; color: #555;
+    padding: 9px 10px; border-radius: 8px; margin-bottom: 6px;
+    font-size: 13px;
   }
-  .hist-item:last-child { border: none; }
+  .hist-item.tipo-compra { background: #cfe2ff; color: #1a3a6e; }
+  .hist-item.tipo-emprestimo { background: #fff3cd; color: #7d4e00; }
   .tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
   .tag-md2 { background: #ede7f6; color: #4527a0; }
-  .tag-zenx { background: #fff3e0; color: #e65100; }
-  .tag-c { background: #e3f2fd; color: #0d47a1; }
-  .tag-e { background: #e8f5e9; color: #1b5e20; }
+  .tag-zenx { background: #ffe0b2; color: #e65100; }
 
   .footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px 0 30px; }
+
+  .legenda { display: flex; gap: 10px; margin-bottom: 14px; }
+  .legenda-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
+  .legenda-cor { width: 16px; height: 16px; border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -101,6 +110,11 @@
 </div>
 
 <div class="container">
+
+  <div class="legenda">
+    <div class="legenda-item"><div class="legenda-cor" style="background:#cfe2ff;border:1px solid #1a56a0"></div> Compra</div>
+    <div class="legenda-item"><div class="legenda-cor" style="background:#fff3cd;border:1px solid #e6a817"></div> Empréstimo</div>
+  </div>
 
   <div class="card">
     <div class="card-title">Funcionário</div>
@@ -152,7 +166,7 @@
   </div>
 
   <div class="success-box" id="successBox">
-    <p>✅ Registrado na planilha!</p>
+    <p id="successTitle"></p>
     <span id="successDetail"></span>
   </div>
   <div class="error-box" id="errorBox"></div>
@@ -240,9 +254,12 @@ function enviar(){
 
   setTimeout(()=>{
     const sBox = document.getElementById('successBox');
+    const isCompra = tipoSelecionado.tipo === 'compra';
+    sBox.className = 'success-box ' + (isCompra ? 'success-buy' : 'success-loan');
     sBox.style.display = 'block';
+    document.getElementById('successTitle').textContent = isCompra ? '🔵 Compra registrada!' : '🟡 Empréstimo registrado!';
     document.getElementById('successDetail').textContent =
-      `${payload.empresa_destino} ← ${payload.empresa_origem} | ${payload.tipo} | ${sku} | ${qtd}x | ${d} ${h}`;
+      `${tipoSelecionado.de} ← ${tipoSelecionado.para} | ${sku} | ${qtd}x | ${d} ${h}`;
     setTimeout(()=> sBox.style.display='none', 5000);
     document.getElementById('skuInput').value = '';
     document.getElementById('qtd').value = '1';
@@ -257,14 +274,13 @@ function renderHist(){
   if(!hist.length) return;
   document.getElementById('histCard').style.display = 'block';
   document.getElementById('histList').innerHTML = hist.map(h=>`
-    <div class="hist-item">
+    <div class="hist-item tipo-${h.tipo}">
       <span>
         <span class="tag ${h.empresa_destino==='MD2'?'tag-md2':'tag-zenx'}">${h.empresa_destino}</span>
         ← <span class="tag ${h.empresa_origem==='ZENX'?'tag-zenx':'tag-md2'}">${h.empresa_origem}</span>
-        &nbsp;<span class="tag ${h.tipo==='compra'?'tag-c':'tag-e'}">${h.tipo}</span>
         &nbsp;${h.sku}
       </span>
-      <span style="color:#999">${h.quantidade}x</span>
+      <span>${h.quantidade}x · ${h.tipo==='compra'?'🔵':'🟡'}</span>
     </div>`).join('');
 }
 </script>
