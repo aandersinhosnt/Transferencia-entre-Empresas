@@ -1777,13 +1777,25 @@ function enviar() {
   const d = now.toLocaleDateString("pt-BR");
   const h = now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
 
-  // Para devolução: quem devolve (de) → para quem (para)
-  // O "destino" na planilha é quem originou o empréstimo (recebe a devolução)
-  // Usamos estoque_destino = para (recebe), estoque_origem = de (devolve/compra/empresta)
+  // Lógica de origem/destino:
+  // COMPRA:     de=MD2 comprou da ZENX → origem=ZENX, destino=MD2
+  // EMPRESTIMO: de=ZENX pegou emp. da MD2 → origem=MD2 (saiu de lá), destino=ZENX (recebeu)
+  // DEVOLUCAO:  de=ZENX devolveu para MD2 → origem=ZENX (saiu de lá), destino=MD2 (recebeu)
+  var orig, dest;
+  if(tipoAtual === "compra") {
+    orig = empresaSel.para; // produto saiu de quem vendeu
+    dest = empresaSel.de;   // produto chegou em quem comprou
+  } else if(tipoAtual === "emprestimo") {
+    orig = empresaSel.para; // produto saiu de quem emprestou
+    dest = empresaSel.de;   // produto chegou em quem pegou emprestado
+  } else { // devolucao
+    orig = empresaSel.de;   // produto saiu de quem está devolvendo
+    dest = empresaSel.para; // produto chegou em quem recebe de volta
+  }
   const params = new URLSearchParams({
     data: d, hora: h, funcionario: func, autorizado: autor,
-    estoque_origem: empresaSel.de,
-    estoque_destino: empresaSel.para,
+    estoque_origem: orig,
+    estoque_destino: dest,
     tipo: tipoAtual,
     sku: sku, quantidade: qtd, observacao: obs
   });
