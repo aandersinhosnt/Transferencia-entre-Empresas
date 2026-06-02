@@ -6,36 +6,63 @@
 <title>Transferência de Estoque</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f4f4; color: #1a1a1a; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f0f2f5; color: #1a1a1a; }
   .header { background: #1a56a0; color: white; padding: 16px 20px; }
-  .header h1 { font-size: 18px; font-weight: 600; }
-  .header p { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+  .header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
+  .header p { font-size: 12px; opacity: 0.8; margin-top: 2px; letter-spacing: 0.3px; }
   .container { padding: 16px; max-width: 500px; margin: 0 auto; }
   .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-  .card-title { font-size: 13px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-  label { display: block; font-size: 13px; color: #555; margin-bottom: 5px; margin-top: 12px; }
+  .card-title { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+  label { display: block; font-size: 12px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; margin-top: 12px; }
   label:first-child { margin-top: 0; }
   input[type=text], input[type=number] {
-    width: 100%; height: 44px; padding: 0 12px;
-    border: 1.5px solid #ddd; border-radius: 8px;
-    font-size: 15px; color: #1a1a1a; background: #fff;
-    -webkit-appearance: none;
+    width: 100%; height: 46px; padding: 0 12px;
+    border: 1.5px solid #e0e0e0; border-radius: 8px;
+    font-size: 14px; font-weight: 600; color: #1a1a1a; background: #fafafa;
+    text-transform: uppercase; -webkit-appearance: none;
   }
-  input:focus { outline: none; border-color: #1a56a0; }
-  .tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .tipo-btn {
-    padding: 14px 8px; border: 1.5px solid #ddd; border-radius: 10px;
+  input:focus { outline: none; border-color: #1a56a0; background: #fff; }
+  input::placeholder { font-weight: 400; text-transform: uppercase; color: #bbb; }
+
+  /* ABAS DE TIPO */
+  .tabs { display: flex; background: #f0f2f5; border-radius: 10px; padding: 4px; margin-bottom: 14px; gap: 4px; }
+  .tab-btn { flex: 1; padding: 10px 4px; border: none; border-radius: 8px; background: transparent;
+    font-size: 11px; font-weight: 700; color: #888; cursor: pointer; text-transform: uppercase;
+    letter-spacing: 0.5px; transition: all 0.15s; -webkit-tap-highlight-color: transparent; }
+  .tab-btn.active-compra { background: #cfe2ff; color: #0a2e6e; }
+  .tab-btn.active-emprestimo { background: #fff3cd; color: #6b4400; }
+  .tab-btn.active-devolucao { background: #d4edda; color: #155724; }
+
+  /* GRID DE EMPRESAS */
+  .empresa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .empresa-btn {
+    padding: 16px 8px; border: 2px solid #e0e0e0; border-radius: 10px;
     background: white; cursor: pointer; text-align: center;
-    line-height: 1.5; color: #1a1a1a;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent; transition: all 0.15s;
   }
-  .tipo-btn.active-buy { background: #cfe2ff; border-color: #1a56a0; color: #0a2e6e; }
-  .tipo-btn.active-loan { background: #fff3cd; border-color: #d4a000; color: #6b4400; }
-  .tipo-btn .empresa { font-size: 16px; font-weight: 800; display: block; margin-bottom: 3px; letter-spacing: 0.5px; }
-  .tipo-btn .acao { font-size: 11px; font-weight: 500; display: block; text-transform: uppercase; letter-spacing: 0.3px; }
-  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .badge-buy { background: #cfe2ff; color: #0a2e6e; }
-  .badge-loan { background: #fff3cd; color: #6b4400; }
+  .empresa-btn .de { font-size: 18px; font-weight: 800; letter-spacing: 0.5px; display: block; }
+  .empresa-btn .seta { font-size: 13px; color: #aaa; display: block; margin: 4px 0; }
+  .empresa-btn .para { font-size: 14px; font-weight: 700; display: block; }
+  .empresa-btn .subtipo { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 6px; display: inline-block; padding: 2px 10px; border-radius: 20px; }
+
+  .empresa-btn.sel-compra { background: #cfe2ff; border-color: #1a56a0; }
+  .empresa-btn.sel-compra .de { color: #0a2e6e; }
+  .empresa-btn.sel-compra .para { color: #1a56a0; }
+  .empresa-btn.sel-compra .seta { color: #1a56a0; }
+  .empresa-btn.sel-compra .subtipo { background: #1a56a0; color: white; }
+
+  .empresa-btn.sel-emprestimo { background: #fff3cd; border-color: #d4a000; }
+  .empresa-btn.sel-emprestimo .de { color: #6b4400; }
+  .empresa-btn.sel-emprestimo .para { color: #a06000; }
+  .empresa-btn.sel-emprestimo .seta { color: #d4a000; }
+  .empresa-btn.sel-emprestimo .subtipo { background: #d4a000; color: white; }
+
+  .empresa-btn.sel-devolucao { background: #d4edda; border-color: #28a745; }
+  .empresa-btn.sel-devolucao .de { color: #155724; }
+  .empresa-btn.sel-devolucao .para { color: #1e7e34; }
+  .empresa-btn.sel-devolucao .seta { color: #28a745; }
+  .empresa-btn.sel-devolucao .subtipo { background: #28a745; color: white; }
+
   .sku-wrap { position: relative; }
   .sku-dropdown {
     display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 50;
@@ -43,78 +70,92 @@
     max-height: 220px; overflow-y: auto;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12); margin-top: 2px;
   }
-  .sku-item { padding: 12px 14px; font-size: 14px; cursor: pointer; border-bottom: 1px solid #f0f0f0; }
+  .sku-item { padding: 12px 14px; font-size: 13px; font-weight: 600; cursor: pointer; border-bottom: 1px solid #f0f0f0; text-transform: uppercase; }
   .sku-item:last-child { border: none; }
   .sku-item:active { background: #f0f4ff; }
-  .sku-item.new-sku { color: #1a56a0; font-style: italic; }
+  .sku-item.new-sku { color: #1a56a0; }
+
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
   .btn-submit {
-    width: 100%; height: 52px; background: #1a56a0; color: white;
-    border: none; border-radius: 10px; font-size: 15px; font-weight: 700;
-    cursor: pointer; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+    width: 100%; height: 52px; color: white;
+    border: none; border-radius: 10px; font-size: 15px; font-weight: 800;
+    cursor: pointer; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px;
     -webkit-tap-highlight-color: transparent;
   }
-  .btn-submit:active { background: #0e3a73; }
-  .btn-submit:disabled { background: #aaa; }
-  .success-box { display: none; border-radius: 10px; padding: 14px; text-align: center; margin-top: 12px; }
-  .success-buy { background: #cfe2ff; border: 1.5px solid #1a56a0; }
-  .success-buy p { color: #0a2e6e; font-size: 15px; font-weight: 700; text-transform: uppercase; }
-  .success-buy span { color: #1a56a0; font-size: 12px; display: block; margin-top: 4px; }
-  .success-loan { background: #fff3cd; border: 1.5px solid #d4a000; }
-  .success-loan p { color: #6b4400; font-size: 15px; font-weight: 700; text-transform: uppercase; }
-  .success-loan span { color: #a06000; font-size: 12px; display: block; margin-top: 4px; }
-  .error-box { display: none; background: #fdecea; border: 1.5px solid #c62828; border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 13px; color: #b71c1c; }
+  .btn-compra    { background: #1a56a0; }
+  .btn-compra:active { background: #0e3a73; }
+  .btn-emprestimo { background: #d4a000; }
+  .btn-emprestimo:active { background: #a07800; }
+  .btn-devolucao { background: #28a745; }
+  .btn-devolucao:active { background: #1e7e34; }
+  .btn-submit:disabled { background: #bbb !important; }
+
+  .success-box { display: none; border-radius: 10px; padding: 16px; text-align: center; margin-top: 12px; }
+  .suc-compra    { background: #cfe2ff; border: 2px solid #1a56a0; }
+  .suc-compra p  { color: #0a2e6e; font-size: 15px; font-weight: 800; text-transform: uppercase; }
+  .suc-compra span { color: #1a56a0; font-size: 12px; display: block; margin-top: 4px; font-weight: 600; }
+  .suc-emprestimo { background: #fff3cd; border: 2px solid #d4a000; }
+  .suc-emprestimo p { color: #6b4400; font-size: 15px; font-weight: 800; text-transform: uppercase; }
+  .suc-emprestimo span { color: #a06000; font-size: 12px; display: block; margin-top: 4px; font-weight: 600; }
+  .suc-devolucao { background: #d4edda; border: 2px solid #28a745; }
+  .suc-devolucao p { color: #155724; font-size: 15px; font-weight: 800; text-transform: uppercase; }
+  .suc-devolucao span { color: #1e7e34; font-size: 12px; display: block; margin-top: 4px; font-weight: 600; }
+
+  .error-box { display: none; background: #fdecea; border: 2px solid #c62828; border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 13px; font-weight: 700; color: #b71c1c; text-transform: uppercase; }
+
   .hist-card { display: none; }
-  .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 10px; border-radius: 8px; margin-bottom: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
-  .hist-item.tipo-compra { background: #cfe2ff; color: #0a2e6e; }
-  .hist-item.tipo-emprestimo { background: #fff3cd; color: #6b4400; }
-  .legenda { display: flex; gap: 12px; margin-bottom: 14px; font-size: 12px; font-weight: 600; color: #555; align-items: center; text-transform: uppercase; }
-  .legenda-cor { width: 14px; height: 14px; border-radius: 3px; display: inline-block; margin-right: 4px; vertical-align: middle; }
-  .footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px 0 30px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+  .hist-item.tc { background: #cfe2ff; color: #0a2e6e; }
+  .hist-item.te { background: #fff3cd; color: #6b4400; }
+  .hist-item.td { background: #d4edda; color: #155724; }
+
+  .legenda { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .leg { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; display: flex; align-items: center; gap: 5px; }
+  .leg-cor { width: 12px; height: 12px; border-radius: 3px; }
+  .footer { text-align: center; font-size: 11px; font-weight: 600; color: #aaa; padding: 20px 0 30px; text-transform: uppercase; letter-spacing: 1px; }
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📦 TRANSFERÊNCIA DE ESTOQUE</h1>
-  <p>MD2 ↔ ZENX — COMPRAS E EMPRÉSTIMOS</p>
+  <p>MD2 ↔ ZENX — COMPRAS, EMPRÉSTIMOS E DEVOLUÇÕES</p>
 </div>
 <div class="container">
 
   <div class="legenda">
-    <span><span class="legenda-cor" style="background:#cfe2ff;border:1px solid #1a56a0"></span>Compra</span>
-    <span><span class="legenda-cor" style="background:#fff3cd;border:1px solid #d4a000"></span>Empréstimo</span>
+    <div class="leg"><div class="leg-cor" style="background:#cfe2ff;border:1px solid #1a56a0"></div>COMPRA</div>
+    <div class="leg"><div class="leg-cor" style="background:#fff3cd;border:1px solid #d4a000"></div>EMPRÉSTIMO</div>
+    <div class="leg"><div class="leg-cor" style="background:#d4edda;border:1px solid #28a745"></div>DEVOLUÇÃO</div>
   </div>
 
   <div class="card">
     <div class="card-title">Funcionário</div>
-    <label>NOME DE QUEM ESTÁ REGISTRANDO</label>
-    <input type="text" id="funcionario" placeholder="SEU NOME" style="text-transform:uppercase" />
-    <label>NOME DE QUEM AUTORIZOU</label>
-    <input type="text" id="autorizado" placeholder="NOME DO AUTORIZADOR" style="text-transform:uppercase" />
+    <label>QUEM ESTÁ REGISTRANDO</label>
+    <input type="text" id="funcionario" placeholder="SEU NOME" />
+    <label>QUEM AUTORIZOU</label>
+    <input type="text" id="autorizado" placeholder="NOME DO AUTORIZADOR" />
   </div>
 
   <div class="card">
     <div class="card-title">Tipo de Movimentação</div>
-    <div class="tipo-grid">
-      <button class="tipo-btn" id="btn1" onclick="setTipo('MD2','ZENX','compra')">
-        <span class="empresa">MD2</span>
-        <span class="acao">COMPROU DA ZENX</span>
-        <span class="badge badge-buy">COMPRA</span>
+    <div class="tabs">
+      <button class="tab-btn" id="tab-compra" onclick="setTab('compra')">🔵 COMPRA</button>
+      <button class="tab-btn" id="tab-emprestimo" onclick="setTab('emprestimo')">🟡 EMPRÉSTIMO</button>
+      <button class="tab-btn" id="tab-devolucao" onclick="setTab('devolucao')">🟢 DEVOLUÇÃO</button>
+    </div>
+    <div class="empresa-grid" id="empresaGrid">
+      <button class="empresa-btn" id="eBtn1" onclick="setEmpresa('MD2','ZENX')">
+        <span class="de">MD2</span>
+        <span class="seta" id="setaE1">→</span>
+        <span class="para">ZENX</span>
+        <span class="subtipo" id="subE1">—</span>
       </button>
-      <button class="tipo-btn" id="btn2" onclick="setTipo('MD2','ZENX','emprestimo')">
-        <span class="empresa">MD2</span>
-        <span class="acao">PEGOU EMPRESTADO DA ZENX</span>
-        <span class="badge badge-loan">EMPRÉSTIMO</span>
-      </button>
-      <button class="tipo-btn" id="btn3" onclick="setTipo('ZENX','MD2','compra')">
-        <span class="empresa">ZENX</span>
-        <span class="acao">COMPROU DA MD2</span>
-        <span class="badge badge-buy">COMPRA</span>
-      </button>
-      <button class="tipo-btn" id="btn4" onclick="setTipo('ZENX','MD2','emprestimo')">
-        <span class="empresa">ZENX</span>
-        <span class="acao">PEGOU EMPRESTADO DA MD2</span>
-        <span class="badge badge-loan">EMPRÉSTIMO</span>
+      <button class="empresa-btn" id="eBtn2" onclick="setEmpresa('ZENX','MD2')">
+        <span class="de">ZENX</span>
+        <span class="seta" id="setaE2">→</span>
+        <span class="para">MD2</span>
+        <span class="subtipo" id="subE2">—</span>
       </button>
     </div>
   </div>
@@ -124,21 +165,20 @@
     <label>SKU DO PRODUTO</label>
     <div class="sku-wrap">
       <input type="text" id="skuInput" placeholder="DIGITE O SKU OU PARTE DO NOME..."
-        autocomplete="off" oninput="filterSku()" onfocus="filterSku()" onblur="setTimeout(hideDrop,250)"
-        style="text-transform:uppercase" />
+        autocomplete="off" oninput="filterSku()" onfocus="filterSku()" onblur="setTimeout(hideDrop,250)" />
       <div class="sku-dropdown" id="skuDrop"></div>
     </div>
     <div class="row2" style="margin-top:12px">
       <div>
         <label>QUANTIDADE</label>
-        <input type="number" id="qtd" min="1" value="1" inputmode="numeric" />
+        <input type="number" id="qtd" min="1" value="1" inputmode="numeric" style="text-transform:none" />
       </div>
       <div>
         <label>OBSERVAÇÃO</label>
-        <input type="text" id="obs" placeholder="OPCIONAL" style="text-transform:uppercase" />
+        <input type="text" id="obs" placeholder="OPCIONAL" />
       </div>
     </div>
-    <button class="btn-submit" id="btnEnviar" onclick="enviar()">✓ REGISTRAR MOVIMENTAÇÃO</button>
+    <button class="btn-submit btn-compra" id="btnEnviar" onclick="enviar()">✓ REGISTRAR</button>
   </div>
 
   <div class="success-box" id="successBox">
@@ -1649,100 +1689,144 @@ const SKUS = [
   "QUATAR2022-75FIGU"
 ];
 
-let tipoSelecionado = null;
+let tipoAtual = null;
+let empresaSel = null;
 let hist = [];
 
-function setTipo(de, para, tipo){
-  tipoSelecionado = {de, para, tipo};
-  ['btn1','btn2','btn3','btn4'].forEach(b => document.getElementById(b).className='tipo-btn');
-  const map = {'MD2-ZENX-compra':'btn1','MD2-ZENX-emprestimo':'btn2','ZENX-MD2-compra':'btn3','ZENX-MD2-emprestimo':'btn4'};
-  const btn = document.getElementById(map[de+'-'+para+'-'+tipo]);
-  if(btn) btn.className = 'tipo-btn ' + (tipo==='compra'?'active-buy':'active-loan');
+const LABELS = {
+  compra:     { seta: "COMPROU DE", sub: "COMPRA",     btnClass: "btn-compra",     selClass: "sel-compra",     sucClass: "suc-compra",     tabClass: "active-compra"     },
+  emprestimo: { seta: "PEGOU EMP. DE", sub: "EMPRÉSTIMO", btnClass: "btn-emprestimo", selClass: "sel-emprestimo", sucClass: "suc-emprestimo", tabClass: "active-emprestimo" },
+  devolucao:  { seta: "DEVOLVEU PARA", sub: "DEVOLUÇÃO",  btnClass: "btn-devolucao",  selClass: "sel-devolucao",  sucClass: "suc-devolucao",  tabClass: "active-devolucao"  }
+};
+
+function setTab(tipo) {
+  tipoAtual = tipo;
+  empresaSel = null;
+  ["compra","emprestimo","devolucao"].forEach(t => {
+    document.getElementById("tab-"+t).className = "tab-btn" + (t===tipo ? " active-"+tipo : "");
+  });
+  // Resetar botões de empresa
+  ["eBtn1","eBtn2"].forEach(b => {
+    document.getElementById(b).className = "empresa-btn";
+  });
+  // Atualizar subtexto dos botões
+  const L = LABELS[tipo];
+  document.getElementById("subE1").textContent = L.sub;
+  document.getElementById("subE2").textContent = L.sub;
+  document.getElementById("setaE1").textContent = L.seta;
+  document.getElementById("setaE2").textContent = L.seta;
+  // Atualizar botão enviar
+  const btn = document.getElementById("btnEnviar");
+  btn.className = "btn-submit " + L.btnClass;
+  btn.textContent = "✓ REGISTRAR " + L.sub;
 }
 
-function filterSku(){
-  const q = document.getElementById('skuInput').value.trim().toUpperCase();
-  const drop = document.getElementById('skuDrop');
-  if(!q){ drop.style.display='none'; return; }
+function setEmpresa(de, para) {
+  if(!tipoAtual) { 
+    document.getElementById("errorBox").textContent = "⚠ SELECIONE PRIMEIRO O TIPO DE MOVIMENTAÇÃO.";
+    document.getElementById("errorBox").style.display = "block";
+    return;
+  }
+  document.getElementById("errorBox").style.display = "none";
+  empresaSel = {de, para};
+  const L = LABELS[tipoAtual];
+  ["eBtn1","eBtn2"].forEach(b => document.getElementById(b).className = "empresa-btn");
+  const btnId = de === "MD2" ? "eBtn1" : "eBtn2";
+  document.getElementById(btnId).className = "empresa-btn " + L.selClass;
+}
+
+function filterSku() {
+  const q = document.getElementById("skuInput").value.trim().toUpperCase();
+  const drop = document.getElementById("skuDrop");
+  if(!q){ drop.style.display="none"; return; }
   const matches = SKUS.filter(s => s.toUpperCase().includes(q)).slice(0,12);
   const exact = SKUS.some(s => s.toUpperCase()===q);
-  let html = matches.map(s => '<div class="sku-item" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+s.replace(/"/g,"&quot;")+'">'+s+'</div>').join('');
+  let html = matches.map(s => '<div class="sku-item" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+s.replace(/"/g,"&quot;")+'">'+s+'</div>').join("");
   if(!exact && q.length>1){
-    const raw = document.getElementById('skuInput').value.trim();
-    html += '<div class="sku-item new-sku" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+raw.replace(/"/g,"&quot;")+'">+ ADICIONAR NOVO: "'+raw.toUpperCase()+'"</div>';
+    const raw = document.getElementById("skuInput").value.trim().toUpperCase();
+    html += '<div class="sku-item new-sku" ontouchstart="" onclick="selectSku(this.dataset.v)" data-v="'+raw+'">+ ADICIONAR NOVO: "'+raw+'"</div>';
   }
   drop.innerHTML = html;
-  drop.style.display = (matches.length || (!exact && q.length>1)) ? 'block' : 'none';
+  drop.style.display = (matches.length || (!exact && q.length>1)) ? "block" : "none";
 }
 
-function selectSku(s){ document.getElementById('skuInput').value = s; document.getElementById('skuDrop').style.display = 'none'; }
-function hideDrop(){ document.getElementById('skuDrop').style.display = 'none'; }
+function selectSku(s){ document.getElementById("skuInput").value = s; document.getElementById("skuDrop").style.display = "none"; }
+function hideDrop(){ document.getElementById("skuDrop").style.display = "none"; }
 
-function enviar(){
-  const func = document.getElementById('funcionario').value.trim().toUpperCase();
-  const autor = document.getElementById('autorizado').value.trim().toUpperCase();
-  const sku  = document.getElementById('skuInput').value.trim().toUpperCase();
-  const qtd  = parseInt(document.getElementById('qtd').value)||0;
-  const obs  = document.getElementById('obs').value.trim().toUpperCase();
-  const err  = document.getElementById('errorBox');
-  err.style.display = 'none';
+function enviar() {
+  const func  = document.getElementById("funcionario").value.trim().toUpperCase();
+  const autor = document.getElementById("autorizado").value.trim().toUpperCase();
+  const sku   = document.getElementById("skuInput").value.trim().toUpperCase();
+  const qtd   = parseInt(document.getElementById("qtd").value)||0;
+  const obs   = document.getElementById("obs").value.trim().toUpperCase();
+  const err   = document.getElementById("errorBox");
+  err.style.display = "none";
 
-  if(!func){ err.textContent='⚠ INFORME O NOME DO FUNCIONÁRIO.'; err.style.display='block'; return; }
-  if(!autor){ err.textContent='⚠ INFORME O NOME DE QUEM AUTORIZOU.'; err.style.display='block'; return; }
-  if(!tipoSelecionado){ err.textContent='⚠ SELECIONE O TIPO DE MOVIMENTAÇÃO.'; err.style.display='block'; return; }
-  if(!sku){ err.textContent='⚠ INFORME O SKU DO PRODUTO.'; err.style.display='block'; return; }
-  if(qtd<1){ err.textContent='⚠ QUANTIDADE DEVE SER PELO MENOS 1.'; err.style.display='block'; return; }
+  if(!func)       { err.textContent="⚠ INFORME O NOME DO FUNCIONÁRIO.";        err.style.display="block"; return; }
+  if(!autor)      { err.textContent="⚠ INFORME O NOME DE QUEM AUTORIZOU.";     err.style.display="block"; return; }
+  if(!tipoAtual)  { err.textContent="⚠ SELECIONE O TIPO DE MOVIMENTAÇÃO.";     err.style.display="block"; return; }
+  if(!empresaSel) { err.textContent="⚠ SELECIONE QUAL EMPRESA.";               err.style.display="block"; return; }
+  if(!sku)        { err.textContent="⚠ INFORME O SKU DO PRODUTO.";             err.style.display="block"; return; }
+  if(qtd<1)       { err.textContent="⚠ QUANTIDADE DEVE SER PELO MENOS 1.";     err.style.display="block"; return; }
 
-  const btn = document.getElementById('btnEnviar');
+  const btn = document.getElementById("btnEnviar");
   btn.disabled = true;
-  btn.textContent = '⏳ ENVIANDO...';
+  btn.textContent = "⏳ ENVIANDO...";
 
   const now = new Date();
-  const d = now.toLocaleDateString('pt-BR');
-  const h = now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const d = now.toLocaleDateString("pt-BR");
+  const h = now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
 
+  // Para devolução: quem devolve (de) → para quem (para)
+  // O "destino" na planilha é quem originou o empréstimo (recebe a devolução)
+  // Usamos estoque_destino = para (recebe), estoque_origem = de (devolve/compra/empresta)
   const params = new URLSearchParams({
     data: d, hora: h, funcionario: func, autorizado: autor,
-    empresa_origem: tipoSelecionado.para,
-    empresa_destino: tipoSelecionado.de,
-    tipo: tipoSelecionado.tipo,
+    estoque_origem: empresaSel.de,
+    estoque_destino: empresaSel.para,
+    tipo: tipoAtual,
     sku: sku, quantidade: qtd, observacao: obs
   });
 
   const img = new Image();
-  img.src = SHEET_URL + '?' + params.toString();
+  img.src = SHEET_URL + "?" + params.toString();
 
-  const payload = {data:d, hora:h, funcionario:func, autorizado:autor, empresa_origem:tipoSelecionado.para, empresa_destino:tipoSelecionado.de, tipo:tipoSelecionado.tipo, sku, quantidade:qtd};
+  const payload = {data:d, hora:h, tipo:tipoAtual, de:empresaSel.de, para:empresaSel.para, sku, quantidade:qtd};
   hist.unshift(payload);
   if(hist.length>5) hist.pop();
 
   setTimeout(()=>{
-    const sBox = document.getElementById('successBox');
-    const isCompra = tipoSelecionado.tipo === 'compra';
-    sBox.className = 'success-box ' + (isCompra ? 'success-buy' : 'success-loan');
-    sBox.style.display = 'block';
-    const textoAcao = isCompra
-      ? tipoSelecionado.de + ' COMPROU DA ' + tipoSelecionado.para
-      : tipoSelecionado.de + ' PEGOU EMPRESTADO DA ' + tipoSelecionado.para;
-    document.getElementById('successTitle').textContent = (isCompra ? '🔵 ' : '🟡 ') + textoAcao;
-    document.getElementById('successDetail').textContent = sku + ' | ' + qtd + 'x | AUTORIZADO POR: ' + autor + ' | ' + d + ' ' + h;
-    setTimeout(()=> sBox.style.display='none', 6000);
-    document.getElementById('skuInput').value = '';
-    document.getElementById('qtd').value = '1';
-    document.getElementById('obs').value = '';
+    const L = LABELS[tipoAtual];
+    const sBox = document.getElementById("successBox");
+    sBox.className = "success-box " + L.sucClass;
+    sBox.style.display = "block";
+    const msgs = {
+      compra:     empresaSel.de + " COMPROU DA " + empresaSel.para,
+      emprestimo: empresaSel.de + " PEGOU EMPRESTADO DA " + empresaSel.para,
+      devolucao:  empresaSel.de + " DEVOLVEU PARA " + empresaSel.para
+    };
+    const icons = { compra:"🔵", emprestimo:"🟡", devolucao:"🟢" };
+    document.getElementById("successTitle").textContent = icons[tipoAtual] + " " + msgs[tipoAtual];
+    document.getElementById("successDetail").textContent = sku + " | " + qtd + "x | AUTORIZADO: " + autor + " | " + d + " " + h;
+    setTimeout(()=> sBox.style.display="none", 6000);
+    document.getElementById("skuInput").value = "";
+    document.getElementById("qtd").value = "1";
+    document.getElementById("obs").value = "";
     btn.disabled = false;
-    btn.textContent = '✓ REGISTRAR MOVIMENTAÇÃO';
+    btn.textContent = "✓ REGISTRAR " + L.sub;
     renderHist();
   }, 1500);
 }
 
-function renderHist(){
+function renderHist() {
   if(!hist.length) return;
-  document.getElementById('histCard').style.display = 'block';
-  document.getElementById('histList').innerHTML = hist.map(h=>{
-    const acao = h.tipo==='compra' ? h.empresa_destino+' COMPROU DA '+h.empresa_origem : h.empresa_destino+' PEGOU EMPRESTADO DA '+h.empresa_origem;
-    return '<div class="hist-item tipo-'+h.tipo+'"><span>'+acao+' · '+h.sku+'</span><span>'+h.quantidade+'x · '+(h.tipo==='compra'?'🔵':'🟡')+'</span></div>';
-  }).join('');
+  document.getElementById("histCard").style.display = "block";
+  const cls = {compra:"tc", emprestimo:"te", devolucao:"td"};
+  const txt = {compra:"COMPROU DE", emprestimo:"EMP. DE", devolucao:"DEVOLVEU PARA"};
+  const ico = {compra:"🔵", emprestimo:"🟡", devolucao:"🟢"};
+  document.getElementById("histList").innerHTML = hist.map(h=>
+    '<div class="hist-item '+cls[h.tipo]+'"><span>'+h.de+' '+txt[h.tipo]+' '+h.para+' · '+h.sku+'</span><span>'+h.quantidade+'x '+ico[h.tipo]+'</span></div>'
+  ).join("");
 }
 </script>
 </body>
